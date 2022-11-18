@@ -7,6 +7,7 @@ import {
   Typography,
   Unstable_Grid2 as Grid,
 } from "@mui/material";
+import axios from "axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -21,15 +22,16 @@ export default function MainForm() {
     setMethod(event.target.value);
   };
 
-  const HandleSubmit = () => {
-    console.log(file);
-    router.push({
-      pathname: `/${method}`,
-      query: {
-        file: file,
-        data: "hello",
-      },
-    });
+  const HandleSubmit = async () => {
+    const form = new FormData();
+    form.append("file", file);
+    form.append("method", method);
+    try {
+      const response = await axios.post("/api", form);
+      console.log(response.data.message);
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
   };
   return (
     <div>
