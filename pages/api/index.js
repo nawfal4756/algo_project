@@ -30,7 +30,6 @@ export default async function handler(req, res) {
   if (fileType === "txt") {
     const data = readFileSync(fileUrl, { encoding: "utf8", flag: "r" });
     const array = data.split(" ");
-    console.log(array);
     res.status(200).json({ message: "Successful", array });
   } else {
     res.status(422).json({ message: "Only .txt files can be sent" });

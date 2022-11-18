@@ -10,6 +10,8 @@ import {
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setData } from "../Context/Slice";
 
 import classes from "../styles/Home.module.css";
 
@@ -17,6 +19,7 @@ export default function MainForm() {
   const [method, setMethod] = useState("insertion");
   const [file, setFile] = useState("");
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const HandleMethodChange = (event) => {
     setMethod(event.target.value);
@@ -28,10 +31,12 @@ export default function MainForm() {
     form.append("method", method);
     try {
       const response = await axios.post("/api", form);
-      console.log(response.data.message);
-      console.log(response.data.array);
+      dispatch(setData(response.data.array));
+      if (response.status === 200 && response.data.message === "Successful") {
+        router.push(`/${method}`);
+      }
     } catch (err) {
-      console.log(err.response.data.message);
+      console.log(err);
     }
   };
   return (
