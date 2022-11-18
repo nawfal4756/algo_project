@@ -29,6 +29,7 @@ export default function MainForm() {
     try {
       const response = await axios.post("/api", form);
       console.log(response.data.message);
+      console.log(response.data.array);
     } catch (err) {
       console.log(err.response.data.message);
     }
