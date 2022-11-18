@@ -4,4 +4,9 @@
   align-items: center;
   vertical-align: middle;
   text-align: center;
+  margin: 5% 2%;
+}
+
+.top {
+  padding: 2% 0%;
 }
