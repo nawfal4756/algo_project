@@ -12,15 +12,16 @@ import {
 import classes from "../styles/ArrayDisplay.module.css";
 
 export default function ArrayDisplay({ data }) {
-  console.log(data);
   return (
     <TableContainer component={Paper}>
       <Table>
         <TableHead>
           <TableRow>
-            {data.map((item) => {
+            {data.data.map((item, i) => {
               return (
-                <TableCell className={classes.cellBorder}>{item}</TableCell>
+                <TableCell className={classes.cellBorder} key={i}>
+                  {item}
+                </TableCell>
               );
             })}
           </TableRow>
