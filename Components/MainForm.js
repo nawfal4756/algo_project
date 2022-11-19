@@ -38,7 +38,6 @@ export default function MainForm() {
     const config = {
       onUploadProgress: (progressEvent) => {
         const percentage = (progressEvent.loaded * 100) / progressEvent.total;
-        console.log(progressEvent);
         setProgress(percentage.toFixed(2));
       },
     };
