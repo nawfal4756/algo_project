@@ -1,4 +1,4 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 export const dataSlice = createSlice({
   name: "data",
@@ -14,7 +14,3 @@ export const dataSlice = createSlice({
 
 export const { setData } = dataSlice.actions;
 export const getData = (state) => state.data;
-
-export const store = configureStore({
-  reducer: dataSlice.reducer,
-});

@@ -11,7 +11,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setData } from "../Context/Slice";
+import { setData } from "../Context/DataSlice";
 
 import classes from "../styles/Home.module.css";
 

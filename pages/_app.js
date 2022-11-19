@@ -1,7 +1,7 @@
 import { Paper } from "@mui/material";
 import { Provider } from "react-redux";
 import AppBarPanel from "../Components/AppBarPanel";
-import { store } from "../Context/Slice";
+import { store } from "../Context/Store";
 import "../styles/globals.css";
 import classes from "../styles/Home.module.css";
 
@@ -12,6 +12,7 @@ function MyApp({ Component, pageProps }) {
         <AppBarPanel />
         <Component {...pageProps} />;
       </Paper>
+      
     </Provider>
   );
 }
