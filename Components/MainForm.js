@@ -41,7 +41,7 @@ export default function MainForm() {
   };
   return (
     <div>
-      <Grid container spacing={2} className={classes.top}>
+      <Grid container spacing={2}>
         <Grid xs={12}>
           {/* <Typography variant="h1">Algorithms Solver</Typography> */}
           <Typography variant="h5">Input File Selection</Typography>
