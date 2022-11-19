@@ -1,5 +1,7 @@
 import {
+  Backdrop,
   Button,
+  CircularProgress,
   FormControlLabel,
   Paper,
   Radio,
@@ -14,11 +16,10 @@ import { useDispatch } from "react-redux";
 import { setData } from "../Context/DataSlice";
 import { openSnackbar } from "../Context/SnackbarSlice";
 
-import classes from "../styles/Home.module.css";
-
 export default function MainForm() {
   const [method, setMethod] = useState("insertion");
   const [file, setFile] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -27,6 +28,7 @@ export default function MainForm() {
   };
 
   const HandleSubmit = async () => {
+    setLoading(true);
     const form = new FormData();
     form.append("file", file);
     form.append("method", method);
@@ -50,9 +52,13 @@ export default function MainForm() {
         );
       }
     }
+    setLoading(false);
   };
   return (
     <div>
+      <Backdrop open={loading}>
+        <CircularProgress />
+      </Backdrop>
       <Grid container spacing={2}>
         <Grid xs={12}>
           {/* <Typography variant="h1">Algorithms Solver</Typography> */}
