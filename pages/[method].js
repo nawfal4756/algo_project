@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import { getData } from "../Context/Slice";
 import { methods } from "../Other/SortInfo";
+import { getData } from "../Context/DataSlice";
 
 export default function MethodPage({ data }) {
   const arrayData = useSelector(getData);

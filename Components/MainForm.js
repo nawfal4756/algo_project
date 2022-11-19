@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setData } from "../Context/DataSlice";
+import { openSnackbar } from "../Context/SnackbarSlice";
 
 import classes from "../styles/Home.module.css";
 
@@ -36,7 +37,18 @@ export default function MainForm() {
         router.push(`/${method}`);
       }
     } catch (err) {
-      console.log(err);
+      if (err.response.status === 500) {
+        dispatch(
+          openSnackbar({ message: "Server Error Occured", severity: "error" })
+        );
+      } else {
+        dispatch(
+          openSnackbar({
+            message: err.response.data.message,
+            severity: "error",
+          })
+        );
+      }
     }
   };
   return (
@@ -47,10 +59,10 @@ export default function MainForm() {
           <Typography variant="h5">Input File Selection</Typography>
         </Grid>
         <Grid xs={6}>
-          {file == "" ? (
-            <Typography variant="h5">Select Input File</Typography>
-          ) : (
+          {file.name ? (
             <Typography variant="h5">Selected File : {file.name}</Typography>
+          ) : (
+            <Typography variant="h5">Select Input File</Typography>
           )}
         </Grid>
         <Grid xs={6}>
