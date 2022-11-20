@@ -1,5 +1,7 @@
 import {
+  Backdrop,
   Button,
+  CircularProgress,
   FormControlLabel,
   Paper,
   Radio,
@@ -13,12 +15,13 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setData } from "../Context/DataSlice";
 import { openSnackbar } from "../Context/SnackbarSlice";
-
-import classes from "../styles/Home.module.css";
+import CircularProgressWithLabel from "../Components/CircularProgressWithLabel";
 
 export default function MainForm() {
   const [method, setMethod] = useState("insertion");
   const [file, setFile] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -27,11 +30,19 @@ export default function MainForm() {
   };
 
   const HandleSubmit = async () => {
+    setLoading(true);
+    setProgress(0);
     const form = new FormData();
     form.append("file", file);
     form.append("method", method);
+    const config = {
+      onUploadProgress: (progressEvent) => {
+        const percentage = (progressEvent.loaded * 100) / progressEvent.total;
+        setProgress(+percentage.toFixed(2));
+      },
+    };
     try {
-      const response = await axios.post("/api", form);
+      const response = await axios.post("/api", form, config);
       dispatch(setData(response.data.array));
       if (response.status === 200 && response.data.message === "Successful") {
         router.push(`/${method}`);
@@ -50,9 +61,17 @@ export default function MainForm() {
         );
       }
     }
+    setLoading(false);
   };
   return (
     <div>
+      <Backdrop open={loading}>
+        {progress === 100 ? (
+          <CircularProgress />
+        ) : (
+          <CircularProgressWithLabel value={progress} />
+        )}
+      </Backdrop>
       <Grid container spacing={2}>
         <Grid xs={12}>
           {/* <Typography variant="h1">Algorithms Solver</Typography> */}

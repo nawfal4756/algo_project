@@ -5,7 +5,7 @@ export const snackbarSlice = createSlice({
   initialState: {
     open: false,
     message: "",
-    severity: "",
+    severity: "info",
   },
   reducers: {
     openSnackbar(state, action) {
