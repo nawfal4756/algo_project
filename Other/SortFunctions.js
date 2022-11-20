@@ -1,3 +1,4 @@
+// Remove export and async keyword before running on node directly
 export async function insertionSort(inputArr) {
   let n = inputArr.length;
   let output = [];
@@ -14,7 +15,7 @@ export async function insertionSort(inputArr) {
         j,
         current,
         highlight: -1,
-        array: structuredClone(inputArr),
+        array: [...inputArr],
       });
       j--;
     }
@@ -26,7 +27,7 @@ export async function insertionSort(inputArr) {
       j,
       current,
       highlight: j + 1,
-      array: structuredClone(inputArr),
+      array: [...inputArr],
     });
   }
   return output;
