@@ -1,6 +1,6 @@
 function insertionSort(inputArr) {
   let n = inputArr.length;
-  let output = {};
+  let output = [];
   for (let i = 1; i < n; i++) {
     // Choosing the first element in our unsorted subarray
     let current = inputArr[i];
@@ -11,9 +11,9 @@ function insertionSort(inputArr) {
       j--;
     }
 
-    // output[i] = [...inputArr];
-    console.log(inputArr);
+    // console.log(inputArr);
     inputArr[j + 1] = current;
+    output.push({ i, j, current, array: inputArr });
   }
   return output;
 }
