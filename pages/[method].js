@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ArrayDisplay from "../Components/ArrayDisplay";
 import { methods } from "../Other/SortInfo";
 import { getData } from "../Context/DataSlice";
@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { CircularProgress, Divider } from "@mui/material";
+import { openSnackbar } from "../Context/SnackbarSlice";
 
 export default function MethodPage({ data }) {
   const arrayData = useSelector(getData);
@@ -13,12 +14,28 @@ export default function MethodPage({ data }) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { method } = router.query;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setLoading(true);
     async function callRequest(array) {
-      const response = await axios.post(`/api/${method}`, array);
-      setResponse(response.data);
+      try {
+        const response = await axios.post(`/api/${method}`, array);
+        setResponse(response.data);
+      } catch (err) {
+        if (err.response.status === 500) {
+          dispatch(
+            openSnackbar({ message: "Server Error Occured", severity: "error" })
+          );
+        } else {
+          dispatch(
+            openSnackbar({
+              message: err.response.data.message,
+              severity: "error",
+            })
+          );
+        }
+      }
     }
 
     callRequest(arrayData);

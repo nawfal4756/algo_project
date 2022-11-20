@@ -1,15 +1,12 @@
 import {
-  Divider,
   Paper,
   Table,
-  TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
   Typography,
 } from "@mui/material";
-
 import classes from "../styles/ArrayDisplay.module.css";
 
 export default function ArrayDisplay({ data, parentIndex }) {
@@ -24,16 +21,16 @@ export default function ArrayDisplay({ data, parentIndex }) {
           <TableHead>
             <TableRow>
               {array.map((item, index) => {
-                const classesArray = [classes.cellBorder];
+                let classesArray = [classes.cellBorder];
                 if (
                   highlight != -1 &&
                   highlight === index &&
                   parentIndex != 0
                 ) {
-                  classesArray.push(classes.highlight);
+                  classesArray.push(classes.mark);
                 }
                 return (
-                  <TableCell className={classesArray} key={index}>
+                  <TableCell className={classesArray.join(" ")} key={index}>
                     {item}
                   </TableCell>
                 );
