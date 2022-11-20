@@ -1,8 +1,11 @@
 import { insertionSort } from "../../../Other/SortFunctions";
 
 export default async function handler(req, res) {
+  const method = req.query.methodId;
+  if (req.method === "GET") {
+    res.status(200).json({ message: `/api/${method}` });
+  }
   if (req.method === "POST") {
-    const method = req.query.methodId;
     const array = req.body.data;
     const numArray = array.map((item) => {
       return parseFloat(item);
