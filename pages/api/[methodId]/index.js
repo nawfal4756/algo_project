@@ -1,4 +1,16 @@
+import { insertionSort } from "../../../Other/SortFunctions";
+
 export default async function handler(req, res) {
-  console.log(req);
-  res.status(200).json();
+  if (req.method === "POST") {
+    const method = req.query.methodId;
+    const array = req.body.data;
+    const numArray = array.map((item) => {
+      return parseFloat(item);
+    });
+    let output = [];
+    if (method === "insertion") {
+      output = await insertionSort(numArray);
+    }
+    res.status(200).json(output);
+  }
 }

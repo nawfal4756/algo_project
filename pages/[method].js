@@ -2,15 +2,40 @@ import { useSelector } from "react-redux";
 import ArrayDisplay from "../Components/ArrayDisplay";
 import { methods } from "../Other/SortInfo";
 import { getData } from "../Context/DataSlice";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { CircularProgress, Divider } from "@mui/material";
 
 export default function MethodPage({ data }) {
   const arrayData = useSelector(getData);
-  // console.log(arrayData);
+  const [response, setResponse] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const { method } = router.query;
+
+  useEffect(() => {
+    setLoading(true);
+    async function callRequest(array) {
+      const response = await axios.post(`/api/${method}`, array);
+      setResponse(response.data);
+    }
+
+    callRequest(arrayData);
+    setLoading(false);
+  }, []);
+  console.log(response);
   return (
     <div>
       <h1>{data.name}</h1>
       <h3>{data.description}</h3>
-      <ArrayDisplay data={arrayData} />
+      {loading ? (
+        <CircularProgress />
+      ) : (
+        response.map((item, index) => {
+          return <ArrayDisplay data={item} parentIndex={index} key={index} />;
+        })
+      )}
     </div>
   );
 }

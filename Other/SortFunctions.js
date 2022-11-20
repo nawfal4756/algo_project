@@ -1,6 +1,7 @@
-function insertionSort(inputArr) {
+export async function insertionSort(inputArr) {
   let n = inputArr.length;
   let output = [];
+  let highlighted = -1;
   for (let i = 1; i < n; i++) {
     // Choosing the first element in our unsorted subarray
     let current = inputArr[i];
@@ -8,15 +9,27 @@ function insertionSort(inputArr) {
     let j = i - 1;
     while (j > -1 && current < inputArr[j]) {
       inputArr[j + 1] = inputArr[j];
+      output.push({
+        i,
+        j,
+        current,
+        highlight: -1,
+        array: structuredClone(inputArr),
+      });
       j--;
     }
 
     // console.log(inputArr);
     inputArr[j + 1] = current;
-    output.push({ i, j, current, array: inputArr });
+    output.push({
+      i,
+      j,
+      current,
+      highlight: j + 1,
+      array: structuredClone(inputArr),
+    });
   }
   return output;
 }
 
-let output = insertionSort([25, 69, 78, 32, 6, 8, 12]);
-console.log(output);
+// console.log(insertionSort([20, 25, 78, 12, 9, 15, 6]));

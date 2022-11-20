@@ -19,7 +19,7 @@ import CircularProgressWithLabel from "../Components/CircularProgressWithLabel";
 
 export default function MainForm() {
   const [method, setMethod] = useState("insertion");
-  const [file, setFile] = useState("");
+  const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const router = useRouter();
@@ -27,6 +27,10 @@ export default function MainForm() {
 
   const HandleMethodChange = (event) => {
     setMethod(event.target.value);
+  };
+
+  const HandleFileChange = (event) => {
+    setFile(event.target.files[0]);
   };
 
   const HandleSubmit = async () => {
@@ -74,11 +78,10 @@ export default function MainForm() {
       </Backdrop>
       <Grid container spacing={2}>
         <Grid xs={12}>
-          {/* <Typography variant="h1">Algorithms Solver</Typography> */}
           <Typography variant="h5">Input File Selection</Typography>
         </Grid>
         <Grid xs={6}>
-          {file.name ? (
+          {file ? (
             <Typography variant="h5">Selected File : {file.name}</Typography>
           ) : (
             <Typography variant="h5">Select Input File</Typography>
@@ -91,7 +94,7 @@ export default function MainForm() {
               type="file"
               hidden
               accept=".txt"
-              onChange={(e) => setFile(e.target.files[0])}
+              onChange={HandleFileChange}
             />
           </Button>
         </Grid>
