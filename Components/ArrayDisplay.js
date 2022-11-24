@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import classes from "../styles/ArrayDisplay.module.css";
 
-export default function ArrayDisplay({ data, parentIndex }) {
+export default function ArrayDisplay({ data, parentIndex, method }) {
   const { i, j, current, array, highlight } = data;
 
   return (
@@ -22,13 +22,23 @@ export default function ArrayDisplay({ data, parentIndex }) {
             <TableRow>
               {array.map((item, index) => {
                 let classesArray = [classes.cellBorder];
-                if (
-                  highlight != -1 &&
-                  highlight === index &&
-                  parentIndex != 0
-                ) {
-                  classesArray.push(classes.mark);
+                if (method === "insertion") {
+                  if (
+                    highlight != -1 &&
+                    highlight === index &&
+                    parentIndex != 0
+                  ) {
+                    classesArray.push(classes.mark);
+                  }
+                } else if (method === "bubble") {
+                  if (
+                    highlight != -1 &&
+                    (highlight === index || highlight + 1 === index)
+                  ) {
+                    classesArray.push(classes.mark);
+                  }
                 }
+
                 return (
                   <TableCell className={classesArray.join(" ")} key={index}>
                     {item}

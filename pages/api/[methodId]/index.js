@@ -1,4 +1,4 @@
-import { insertionSort } from "../../../Other/SortFunctions";
+import { bubbleSort, insertionSort } from "../../../Other/SortFunctions";
 
 export default async function handler(req, res) {
   const method = req.query.methodId;
@@ -13,6 +13,8 @@ export default async function handler(req, res) {
     let output = [];
     if (method === "insertion") {
       output = await insertionSort(numArray);
+    } else if (method === "bubble") {
+      output = await bubbleSort(numArray);
     }
     res.status(200).json(output);
   }

@@ -2,7 +2,6 @@
 export async function insertionSort(inputArr) {
   let n = inputArr.length;
   let output = [];
-  let highlighted = -1;
   for (let i = 1; i < n; i++) {
     // Choosing the first element in our unsorted subarray
     let current = inputArr[i];
@@ -29,6 +28,26 @@ export async function insertionSort(inputArr) {
       highlight: j + 1,
       array: [...inputArr],
     });
+  }
+  return output;
+}
+
+export async function bubbleSort(inputArr) {
+  let output = [];
+
+  for (let i = 0; i < inputArr.length; i++) {
+    for (let j = 0; j < inputArr.length; j++) {
+      let highlighted = -1;
+
+      if (inputArr[j] > inputArr[j + 1]) {
+        let temp = inputArr[j];
+        inputArr[j] = inputArr[j + 1];
+        inputArr[j + 1] = temp;
+        highlighted = j;
+      }
+
+      output.push({ i, j, highlight: highlighted, array: [...inputArr] });
+    }
   }
   return output;
 }

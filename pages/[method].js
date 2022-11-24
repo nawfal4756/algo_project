@@ -9,7 +9,7 @@ import { CircularProgress, Divider } from "@mui/material";
 import { openSnackbar } from "../Context/SnackbarSlice";
 
 export default function MethodPage({ data }) {
-  const arrayData = useSelector(getData);
+  const arrayData = Array.from(useSelector(getData));
   const [response, setResponse] = useState([]);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -19,6 +19,10 @@ export default function MethodPage({ data }) {
   useEffect(() => {
     setLoading(true);
     async function callRequest(array) {
+      if (arrayData.length === 0) {
+        router.push("/");
+        return;
+      }
       try {
         const response = await axios.post(`/api/${method}`, array);
         setResponse(response.data);
@@ -50,7 +54,14 @@ export default function MethodPage({ data }) {
         <CircularProgress />
       ) : (
         response.map((item, index) => {
-          return <ArrayDisplay data={item} parentIndex={index} key={index} />;
+          return (
+            <ArrayDisplay
+              data={item}
+              parentIndex={index}
+              key={index}
+              method={method}
+            />
+          );
         })
       )}
     </div>
@@ -72,7 +83,10 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
   return {
-    paths: [{ params: { method: "insertion" } }],
+    paths: [
+      { params: { method: "insertion" } },
+      { params: { method: "bubble" } },
+    ],
     fallback: false,
   };
 }
