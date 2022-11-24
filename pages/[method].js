@@ -9,7 +9,7 @@ import { CircularProgress, Divider } from "@mui/material";
 import { openSnackbar } from "../Context/SnackbarSlice";
 
 export default function MethodPage({ data }) {
-  const arrayData = Array.from(useSelector(getData));
+  const arrayData = useSelector(getData);
   const [response, setResponse] = useState([]);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -19,10 +19,6 @@ export default function MethodPage({ data }) {
   useEffect(() => {
     setLoading(true);
     async function callRequest(array) {
-      if (arrayData.length === 0) {
-        router.push("/");
-        return;
-      }
       try {
         const response = await axios.post(`/api/${method}`, array);
         setResponse(response.data);
