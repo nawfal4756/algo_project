@@ -89,6 +89,7 @@ export async function getStaticPaths() {
       { params: { method: "bubble" } },
       { params: { method: "merge" } },
       { params: { method: "heap" } },
+      { params: { method: "quick" } },
     ],
     fallback: false,
   };

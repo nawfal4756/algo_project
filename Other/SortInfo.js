@@ -27,4 +27,11 @@ export const methods = [
     timeComplexity: "O(nlog(n))",
     spaceComplexity: "O(n)",
   },
+  {
+    id: "quick",
+    name: "Quick Sort",
+    description: "It is Quick sort",
+    timeComplexity: "O(n*log(n))",
+    spaceComplexity: "O(n*log(n))",
+  },
 ];

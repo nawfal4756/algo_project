@@ -3,6 +3,7 @@ import {
   heapSort,
   insertionSort,
   mergeSort,
+  quickSort,
 } from "../../../Other/SortFunctions";
 
 export default async function handler(req, res) {
@@ -24,6 +25,9 @@ export default async function handler(req, res) {
       output = await mergeSort(numArray);
     } else if (method === "heap") {
       output = await heapSort(numArray);
+    } else if (method === "quick") {
+      output = await quickSort(numArray, 0, numArray.length - 1);
+      console.log("Length", numArray.length - 1);
     }
     res.status(200).json(output);
   }
