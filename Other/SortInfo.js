@@ -13,4 +13,18 @@ export const methods = [
     timeComplexity: "O(n^2)",
     spaceComplexity: "O(n)",
   },
+  {
+    id: "merge",
+    name: "Merge Sort",
+    description: "It is merge sort",
+    timeComplexity: "O(nlog(n))",
+    spaceComplexity: "O(n)",
+  },
+  {
+    id: "heap",
+    name: "Heap Sort",
+    description: "It is Heap sort",
+    timeComplexity: "O(nlog(n))",
+    spaceComplexity: "O(n)",
+  },
 ];

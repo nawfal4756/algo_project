@@ -1,4 +1,9 @@
-import { bubbleSort, insertionSort } from "../../../Other/SortFunctions";
+import {
+  bubbleSort,
+  heapSort,
+  insertionSort,
+  mergeSort,
+} from "../../../Other/SortFunctions";
 
 export default async function handler(req, res) {
   const method = req.query.methodId;
@@ -15,6 +20,10 @@ export default async function handler(req, res) {
       output = await insertionSort(numArray);
     } else if (method === "bubble") {
       output = await bubbleSort(numArray);
+    } else if (method === "merge") {
+      output = await mergeSort(numArray);
+    } else if (method === "heap") {
+      output = await heapSort(numArray);
     }
     res.status(200).json(output);
   }

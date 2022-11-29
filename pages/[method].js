@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ArrayDisplay from "../Components/ArrayDisplay";
 import { methods } from "../Other/SortInfo";
 import { getData } from "../Context/DataSlice";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { CircularProgress, Divider } from "@mui/material";
@@ -15,6 +15,7 @@ export default function MethodPage({ data }) {
   const router = useRouter();
   const { method } = router.query;
   const dispatch = useDispatch();
+  const dataFetchedRef = useRef(false);
 
   useEffect(() => {
     setLoading(true);
@@ -38,7 +39,11 @@ export default function MethodPage({ data }) {
       }
     }
 
-    callRequest(arrayData);
+    if (!dataFetchedRef.current) {
+      callRequest(arrayData);
+      dataFetchedRef.current = true;
+    }
+
     setLoading(false);
   }, []);
   console.log(response);
@@ -82,6 +87,8 @@ export async function getStaticPaths() {
     paths: [
       { params: { method: "insertion" } },
       { params: { method: "bubble" } },
+      { params: { method: "merge" } },
+      { params: { method: "heap" } },
     ],
     fallback: false,
   };

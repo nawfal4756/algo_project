@@ -14,8 +14,8 @@ export default function ArrayDisplay({ data, parentIndex, method }) {
 
   return (
     <div className={classes.arrayDisplayFormat}>
-      <Typography>i = {i}</Typography>
-      <Typography>j = {j}</Typography>
+      {i ? <Typography>i = {i}</Typography> : null}
+      {j ? <Typography>j = {j}</Typography> : null}
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
