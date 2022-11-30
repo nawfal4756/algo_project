@@ -181,14 +181,14 @@ function partition(arr, start, end) {
       // Swapping elements
       [arr[i], arr[pivotIndex]] = [arr[pivotIndex], arr[i]];
       // Moving to next element
-      outputArr.push({ i: pivotIndex, pivot: end, array: [...arr] });
+      outputArr.push({ i: pivotIndex, j: end, array: [...arr] });
       pivotIndex++;
     }
   }
 
   // Putting the pivot value in the middle
   [arr[pivotIndex], arr[end]] = [arr[end], arr[pivotIndex]];
-  outputArr.push({ i: pivotIndex, pivot: end, array: [...arr] });
+  outputArr.push({ i: pivotIndex, j: end, array: [...arr] });
   return pivotIndex;
 }
 

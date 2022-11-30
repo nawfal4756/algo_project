@@ -10,11 +10,11 @@ import {
 import classes from "../styles/ArrayDisplay.module.css";
 
 export default function ArrayDisplay({ data, parentIndex, method }) {
-  const { i, j, current, array, highlight } = data;
+  const { i, j, array, highlight } = data;
 
   return (
     <div className={classes.arrayDisplayFormat}>
-      {i ? <Typography>i = {i}</Typography> : null}
+      {i != null ? <Typography>i = {i}</Typography> : null}
       {j ? <Typography>j = {j}</Typography> : null}
       <TableContainer component={Paper}>
         <Table>
@@ -37,8 +37,11 @@ export default function ArrayDisplay({ data, parentIndex, method }) {
                   ) {
                     classesArray.push(classes.mark);
                   }
+                } else if (method === "quick") {
+                  if (i === index || j == index) {
+                    classesArray.push(classes.mark);
+                  }
                 }
-
                 return (
                   <TableCell className={classesArray.join(" ")} key={index}>
                     {item}
