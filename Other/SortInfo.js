@@ -41,4 +41,18 @@ export const methods = [
     timeComplexity: "O(nd)",
     spaceComplexity: "O(n+2^d)",
   },
+  {
+    id: "bucket",
+    name: "Bucket Sort",
+    description: "It is Bucket sort",
+    timeComplexity: "O(n^2)",
+    spaceComplexity: "O(n^2)",
+  },
+  {
+    id: "counting",
+    name: "Counting Sort",
+    description: "It is Counting sort",
+    timeComplexity: "O(k)",
+    spaceComplexity: "O(k)",
+  },
 ];

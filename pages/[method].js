@@ -97,6 +97,7 @@ export async function getStaticPaths() {
       { params: { method: "heap" } },
       { params: { method: "quick" } },
       { params: { method: "radix" } },
+      { params: { method: "counting" } },
     ],
     fallback: false,
   };

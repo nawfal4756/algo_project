@@ -5,6 +5,7 @@ import {
   mergeSort,
   quickSort,
   radixController,
+  countingSort,
 } from "../../../Other/SortFunctions";
 
 export default async function handler(req, res) {
@@ -30,6 +31,8 @@ export default async function handler(req, res) {
       output = await quickSort(numArray, 0, numArray.length - 1);
     } else if (method === "radix") {
       output = await radixController(numArray);
+    } else if (method === "counting") {
+      output = await countingSort(numArray);
     }
     res.status(200).json(output);
   }

@@ -61,7 +61,7 @@ export default function ArrayDisplay({ data, parentIndex, method }) {
                 <>
                   <TableCell>
                     <Typography>Array</Typography>
-                  </TableCell>{" "}
+                  </TableCell>
                 </>
               ) : null}
               {array?.map((item, index) => {
