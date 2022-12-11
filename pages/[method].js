@@ -5,8 +5,9 @@ import { getData } from "../Context/DataSlice";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { CircularProgress, Divider } from "@mui/material";
+import { Button, CircularProgress, Divider } from "@mui/material";
 import { openSnackbar } from "../Context/SnackbarSlice";
+import Link from "next/link";
 
 export default function MethodPage({ data }) {
   const arrayData = useSelector(getData);
@@ -65,6 +66,11 @@ export default function MethodPage({ data }) {
           );
         })
       )}
+      <Link href="/">
+        <Button sx={{ mt: 7 }} variant="contained">
+          Go Back
+        </Button>
+      </Link>
     </div>
   );
 }
@@ -90,6 +96,7 @@ export async function getStaticPaths() {
       { params: { method: "merge" } },
       { params: { method: "heap" } },
       { params: { method: "quick" } },
+      { params: { method: "radix" } },
     ],
     fallback: false,
   };

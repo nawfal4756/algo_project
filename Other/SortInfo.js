@@ -34,4 +34,11 @@ export const methods = [
     timeComplexity: "O(n*log(n))",
     spaceComplexity: "O(n*log(n))",
   },
+  {
+    id: "radix",
+    name: "Radix Sort",
+    description: "It is Radix sort",
+    timeComplexity: "O(nd)",
+    spaceComplexity: "O(n+2^d)",
+  },
 ];

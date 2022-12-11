@@ -4,6 +4,7 @@ import {
   insertionSort,
   mergeSort,
   quickSort,
+  radixController,
 } from "../../../Other/SortFunctions";
 
 export default async function handler(req, res) {
@@ -27,6 +28,8 @@ export default async function handler(req, res) {
       output = await heapSort(numArray);
     } else if (method === "quick") {
       output = await quickSort(numArray, 0, numArray.length - 1);
+    } else if (method === "radix") {
+      output = await radixController(numArray);
     }
     res.status(200).json(output);
   }

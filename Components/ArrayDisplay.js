@@ -10,7 +10,7 @@ import {
 import classes from "../styles/ArrayDisplay.module.css";
 
 export default function ArrayDisplay({ data, parentIndex, method }) {
-  const { i, j, array, highlight } = data;
+  const { i, j, array, highlight, countArray } = data;
 
   return (
     <div className={classes.arrayDisplayFormat}>
@@ -20,7 +20,51 @@ export default function ArrayDisplay({ data, parentIndex, method }) {
         <Table>
           <TableHead>
             <TableRow>
-              {array.map((item, index) => {
+              {countArray ? (
+                <>
+                  <TableCell>
+                    <Typography>Count</Typography>
+                  </TableCell>{" "}
+                </>
+              ) : null}
+              {countArray?.map((item, index) => {
+                let classesArray = [classes.cellBorder];
+                if (method === "insertion") {
+                  if (
+                    highlight != -1 &&
+                    highlight === index &&
+                    parentIndex != 0
+                  ) {
+                    classesArray.push(classes.mark);
+                  }
+                } else if (method === "bubble") {
+                  if (
+                    highlight != -1 &&
+                    (highlight === index || highlight + 1 === index)
+                  ) {
+                    classesArray.push(classes.mark);
+                  }
+                } else if (method === "quick") {
+                  if (i === index || j == index) {
+                    classesArray.push(classes.mark);
+                  }
+                }
+                return (
+                  <TableCell className={classesArray.join(" ")} key={index}>
+                    {item}
+                  </TableCell>
+                );
+              })}
+            </TableRow>
+            <TableRow>
+              {array ? (
+                <>
+                  <TableCell>
+                    <Typography>Array</Typography>
+                  </TableCell>{" "}
+                </>
+              ) : null}
+              {array?.map((item, index) => {
                 let classesArray = [classes.cellBorder];
                 if (method === "insertion") {
                   if (
