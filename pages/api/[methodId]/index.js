@@ -4,6 +4,7 @@ import { mergeSort } from "../../../SortingFunctions/MergeSort";
 import { heapSort } from "../../../SortingFunctions/HeapSort";
 import { quickSort } from "../../../SortingFunctions/QuickSort";
 import { radixController } from "../../../SortingFunctions/RadixSort";
+import { bucketSort } from "../../../SortingFunctions/BucketSort";
 import { countingSort } from "../../../SortingFunctions/CountingSort";
 import { modifiedQuickSort } from "../../../SortingFunctions/ModifiedQuickSort";
 import { boundedCountSort } from "../../../SortingFunctions/BoundedCountSort";
@@ -36,6 +37,8 @@ export default async function handler(req, res) {
       output = await quickSort(numArray, 0, numArray.length - 1);
     } else if (method === "radix") {
       output = await radixController(numArray);
+    } else if (method === "bucket") {
+      output = await bucketSort(numArray);
     } else if (method === "counting") {
       output = await countingSort(numArray);
     } else if (method === "modifiedQuick") {

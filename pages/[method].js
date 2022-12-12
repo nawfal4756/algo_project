@@ -150,6 +150,7 @@ export async function getStaticPaths() {
       { params: { method: "heap" } },
       { params: { method: "quick" } },
       { params: { method: "radix" } },
+      { params: { method: "bucket" } },
       { params: { method: "counting" } },
       { params: { method: "modifiedQuick" } },
       { params: { method: "boundedCount" } },
