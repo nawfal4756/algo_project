@@ -5,7 +5,13 @@ import { getData } from "../Context/DataSlice";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { Button, CircularProgress, Divider, TextField } from "@mui/material";
+import {
+  Button,
+  CircularProgress,
+  Divider,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { openSnackbar } from "../Context/SnackbarSlice";
 import Link from "next/link";
 
@@ -119,6 +125,12 @@ export default function MethodPage({ data }) {
           );
         })
       )}
+      <Typography variant="h5" sx={{ fontWeight: "bold", mt: 4 }}>
+        Time Complexity: {data.timeComplexity}
+      </Typography>
+      <Typography variant="h5" sx={{ fontWeight: "bold", mt: 2 }}>
+        Space Complexity: {data.spaceComplexity}
+      </Typography>
       <Link href="/">
         <Button sx={{ mt: 7 }} variant="contained">
           Go Back
