@@ -62,4 +62,11 @@ export const methods = [
     timeComplexity: "O(k)",
     spaceComplexity: "O(k)",
   },
+  {
+    id: "boundedCount",
+    name: "Bounded Count Sort (8.2.4)",
+    description: "It is Bounded Count sort",
+    timeComplexity: "O(k)",
+    spaceComplexity: "O(k)",
+  },
 ];

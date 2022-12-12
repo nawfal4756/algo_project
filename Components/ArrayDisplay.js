@@ -81,7 +81,7 @@ export default function ArrayDisplay({ data, parentIndex, method }) {
                   ) {
                     classesArray.push(classes.mark);
                   }
-                } else if (method === "quick") {
+                } else if (method === "quick" || method === "modifiedQuick") {
                   if (i === index || j == index) {
                     classesArray.push(classes.mark);
                   }
