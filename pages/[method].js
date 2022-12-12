@@ -98,6 +98,7 @@ export async function getStaticPaths() {
       { params: { method: "quick" } },
       { params: { method: "radix" } },
       { params: { method: "counting" } },
+      { params: { method: "modifiedQuick" } },
     ],
     fallback: false,
   };

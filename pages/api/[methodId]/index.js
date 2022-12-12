@@ -1,12 +1,11 @@
-import {
-  bubbleSort,
-  heapSort,
-  insertionSort,
-  mergeSort,
-  quickSort,
-  radixController,
-  countingSort,
-} from "../../../Other/SortFunctions";
+import { insertionSort } from "../../../SortingFunctions/InsertionSort";
+import { bubbleSort } from "../../../SortingFunctions/BubbleSort";
+import { mergeSort } from "../../../SortingFunctions/MergeSort";
+import { heapSort } from "../../../SortingFunctions/HeapSort";
+import { quickSort } from "../../../SortingFunctions/QuickSort";
+import { radixController } from "../../../SortingFunctions/RadixSort";
+import { countingSort } from "../../../SortingFunctions/CountingSort";
+import { modifiedQuickSort } from "../../../SortingFunctions/ModifiedQuickSort";
 
 export default async function handler(req, res) {
   const method = req.query.methodId;
@@ -33,6 +32,8 @@ export default async function handler(req, res) {
       output = await radixController(numArray);
     } else if (method === "counting") {
       output = await countingSort(numArray);
+    } else if (method === "modifiedQuick") {
+      output = await modifiedQuickSort(numArray, 0, numArray.length);
     }
     res.status(200).json(output);
   }

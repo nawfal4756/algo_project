@@ -55,4 +55,11 @@ export const methods = [
     timeComplexity: "O(k)",
     spaceComplexity: "O(k)",
   },
+  {
+    id: "modifiedQuick",
+    name: "Modified Quick Sort (7.4.5)",
+    description: "It is Modified Quick sort",
+    timeComplexity: "O(k)",
+    spaceComplexity: "O(k)",
+  },
 ];

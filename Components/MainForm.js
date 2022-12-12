@@ -145,6 +145,11 @@ export default function MainForm() {
               control={<Radio />}
               label="Counting Sort"
             />
+            <FormControlLabel
+              value="modifiedQuick"
+              control={<Radio />}
+              label="Modified Quick Sort (7.4.5)"
+            />
           </RadioGroup>
           <Grid xs={12}>
             <Button variant="outlined" onClick={HandleSubmit}>
